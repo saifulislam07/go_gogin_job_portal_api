@@ -30,3 +30,22 @@ func GetUserByID(db *sql.DB, id int) (*models.User, error) {
 
 	return &user, err
 }
+
+func GetUserByUserName(db *sql.DB, username string) (*models.User, error) {
+	user := &models.User{}
+	err := db.QueryRow("SELECT * FROM users WHERE username = ?", username).
+		Scan(&user.ID, &user.Username, &user.Password, &user.Email, &user.CreatedAt, &user.UpdatedAt, &user.IsAdmin, &user.ProfilePicture)
+
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}
+
+func UpdateUserProfile(db *sql.DB, user *models.User) (*models.User, error) {
+	_, err := db.Exec("UPDATE users SET username = ?, email = ? WHERE id = ?", user.Username, user.Email, user.ID)
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}
