@@ -16,6 +16,7 @@ func InitRoutes(r *gin.Engine, db *sql.DB) {
 	// group middleware, user routes
 	authenticated := r.Group("/")
 	authenticated.Use(auth.AuthMiddleware())
+	authenticated.GET("/users", handlers.GetUsersdHandler(db))
 	authenticated.GET("/users/:id", handlers.GetUserByIdHandler(db))
 	authenticated.PUT("/users/:id", handlers.UpdateUserProfleHandler(db))
 	authenticated.POST("/users/:id/picture", handlers.UpdateUserProfilePcitureHandler(db))

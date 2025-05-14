@@ -115,3 +115,16 @@ func UpdateUserProfilePcitureHandler(db *sql.DB) gin.HandlerFunc {
 		c.JSON(http.StatusOK, gin.H{"message": "Profile picture updated successfully"})
 	}
 }
+
+func GetUsersdHandler(db *sql.DB) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		users, err := services.GetUsers(db)
+
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting users"})
+			return
+		}
+
+		c.JSON(http.StatusOK, users)
+	}
+}

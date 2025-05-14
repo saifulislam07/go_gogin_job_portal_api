@@ -14,3 +14,7 @@ func UpdateUserProfile(db *sql.DB, id int, username, emailId string) (*models.Us
 	user := &models.User{ID: id, Username: username, Email: emailId}
 	return repository.UpdateUserProfile(db, user)
 }
+
+func GetUsers(db *sql.DB) ([]models.User, error) {
+	return repository.GetUsers(db)
+}
