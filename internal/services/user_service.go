@@ -12,7 +12,5 @@ func GetUserByIdHandler(db *sql.DB, id int) (*models.User, error) {
 
 func UpdateUserProfile(db *sql.DB, id int, username, emailId string) (*models.User, error) {
 	user := &models.User{ID: id, Username: username, Email: emailId}
-
 	return repository.UpdateUserProfile(db, user)
-
 }

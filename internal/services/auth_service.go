@@ -33,3 +33,7 @@ func LoginUser(db *sql.DB, username, password string) (string, error) {
 
 	return utils.GenerateToken(user.Username, user.ID, user.IsAdmin)
 }
+
+func UpdateProfilePicture(db *sql.DB, id int, profilePicture string) error {
+	return repository.UpdateProfilePicture(db, id, profilePicture)
+}

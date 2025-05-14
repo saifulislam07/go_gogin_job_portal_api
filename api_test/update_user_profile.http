@@ -1,0 +1,8 @@
+PUT http://localhost:1000/users/1
+content-type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiYyIsInVzZXJfaWQiOjEsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNzQ3MjQ5MTk2fQ.eVD8nhDloQyMfKZ8QMPIUB5GsB8vri2AC_6RUC-9TuY
+
+{
+  "username": "johndoe1d",
+  "email": "johndoe1d@example.com"
+}

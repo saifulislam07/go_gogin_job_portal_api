@@ -18,4 +18,5 @@ func InitRoutes(r *gin.Engine, db *sql.DB) {
 	authenticated.Use(auth.AuthMiddleware())
 	authenticated.GET("/users/:id", handlers.GetUserByIdHandler(db))
 	authenticated.PUT("/users/:id", handlers.UpdateUserProfleHandler(db))
+	authenticated.POST("/users/:id/picture", handlers.UpdateUserProfilePcitureHandler(db))
 }

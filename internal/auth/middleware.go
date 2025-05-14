@@ -11,17 +11,19 @@ func AuthMiddleware() gin.HandlerFunc {
 		token := c.GetHeader("Authorization")
 
 		if token == "" {
-			c.AbortWithStatusJSON(401, gin.H{"error": "Unauthorized"})
+			c.AbortWithStatusJSON(401, gin.H{"error": "Missing Authorization header"})
 			c.Abort()
 			return
 		}
 
 		claims, err := utils.ValidateToken(token)
+
 		if err != nil {
-			c.AbortWithStatusJSON(401, gin.H{"error": "Unauthorized"})
+			c.AbortWithStatusJSON(401, gin.H{"error": err.Error()})
 			c.Abort()
 			return
 		}
+
 		c.Set("userID", claims.UserID)
 		c.Set("isAdmin", claims.IsAdmin)
 
